@@ -41,61 +41,6 @@ async def database_termination():
     if conn:
         conn.close()
 
-# def uptime_downtime_hour(store_id,current_timestamp,last_hour,local_time_range,current_local_timestamp):
-#     cur.execute("""SELECT (timestamp_utc,status) FROM store_status
-#                 WHERE store_id=%s AND timestamp_utc >= %s AND timestamp_utc < %s 
-#                 ORDER BY timestamp_utc;""",(store_id,last_hour,current_timestamp))
-#     uptime_downtime_hours_res = cur.fetchall()
-#     print(uptime_downtime_hours_res,local_time_range)
-#     return uptime_downtime_hours_res
-
-
-# def uptime_downtime_hour(store_id, current_timestamp, last_hour, local_time_range, current_local_timestamp, timezone):
-#     cur.execute("""
-#         SELECT timestamp_utc, status 
-#         FROM store_status
-#         WHERE store_id = %s 
-#           AND timestamp_utc >= %s 
-#           AND timestamp_utc < %s 
-#         ORDER BY timestamp_utc;
-#     """, (store_id, last_hour, current_timestamp))
-    
-#     uptime_downtime_hours_res = cur.fetchall()
-    
-#     start_time = []
-#     end_time = []
-#     for local_time in local_time_range:
-#         print(local_time)
-#         range_str = local_time.strip('()')
-#         start_str, end_str = range_str.split(',')
-#         start_time.append(time.fromisoformat(start_str.strip()))
-#         end_time.append(time.fromisoformat(end_str.strip()))
-
-#     store_tz = pytz.timezone(timezone)
-#     uptime = 0
-#     downtime = 0
-
-#     uptime_downtime_hours_res.append((current_timestamp, None))
-
-#     for i in range(len(uptime_downtime_hours_res) - 1):
-#         ts_utc, status = uptime_downtime_hours_res[i]
-#         next_ts_utc, _ = uptime_downtime_hours_res[i + 1]
-#         ts_local = ts_utc.astimezone(store_tz)
-#         local_t = ts_local.time()
-#         duration = (next_ts_utc - ts_utc).total_seconds() / 60
-#         for i in range(len(start_time)):
-#             in_range = start_time[i] <= local_t <= end_time[i]
-
-#             if status == "active" and in_range:
-#                 uptime += duration
-#             elif status == "inactive" and in_range:
-#                 downtime += duration
-
-#     return {
-#         "uptime_last_hour": round(uptime),
-#         "downtime_last_hour": round(downtime)
-#     }
-
 def uptime_downtime_hour(store_id, current_timestamp, last_hour, local_time_ranges, timezone_str):
     cur.execute("""
         SELECT timestamp_utc, status 
