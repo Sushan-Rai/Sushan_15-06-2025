@@ -61,6 +61,10 @@ The `db.py` file contains all the queries related to converting the static datas
 - **Output**: 
   - If report generation is ongoing: `"Running"`
   - If complete: `"Complete"` along with the CSV file containing the report.
+ 
+## Report Link
+
+https://drive.google.com/drive/folders/1UE0hYEW1MW1blWRdt4NuutfZXb9BszuV?usp=sharing
 
 ## Data Output Schema
 
