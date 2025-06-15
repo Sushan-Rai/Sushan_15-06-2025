@@ -4,10 +4,6 @@
 
 This project is a backend application designed to monitor the online status of various restaurants in the US. It provides APIs to generate reports on the uptime and downtime of these restaurants during their business hours.
 
-## Problem Statement
-
-Loop monitors several restaurants in the US and needs to ensure that each store is online during business hours. Restaurant owners require reports detailing how often their stores went inactive in the past.
-
 ## Data Sources
 
 The application utilizes three primary data sources:
